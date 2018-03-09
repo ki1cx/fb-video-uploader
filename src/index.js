@@ -1,6 +1,6 @@
 import request from './request';
 
-const fb = {
+const fbVideoUploader = {
   debug: 0,
   adAccountId: null,
   providerToken: null,
@@ -17,11 +17,11 @@ const fb = {
     this.url = 'https://graph-video.facebook.com/v2.11/' + this.adAccountId + '/advideos';
   },
 
-  async uploadVideo(file, title) {
-    delete this.formData;
-    this.formData = new FormData();
+  async upload(file, title) {
     this.log(file);
 
+    delete this.formData;
+    this.formData = new FormData();
     this.formData.set('access_token', this.providerToken);
 
     const startResponse = await this.start(file.size);
@@ -84,4 +84,4 @@ const fb = {
   }
 };
 
-export default fb;
+export default fbVideoUploader;
