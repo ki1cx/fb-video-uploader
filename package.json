@@ -1,6 +1,6 @@
 {
   "name": "fb-video-uploader",
-  "version": "0.0.2-0",
+  "version": "0.0.2-1",
   "description": "fb video uploader",
   "main": "lib/index.js",
   "keywords": [
