@@ -1,13 +1,14 @@
 {
   "name": "fb-video-uploader",
-  "version": "0.0.7",
+  "version": "0.0.1",
   "description": "fb video uploader",
   "main": "build/index.js",
   "keywords": [
     "fb",
     "video",
     "upload",
-    "chunk"
+    "chunk",
+    "facebook"
   ],
   "homepage": "https://github.com/ki1cx/fb-video-uploader",
   "repository": {
