@@ -1,8 +1,8 @@
 // __tests__/index.test.js
 import fb from '../index';
-
 jest.mock('../request');
 import request from '../request';
+const config = require('../fixtures/config');
 
 const convertFormDataToJson = function (formData) {
   var formDataJSON = {};
@@ -16,21 +16,13 @@ const convertFormDataToJson = function (formData) {
 it('upload - start', async () => {
   expect.assertions(2);
 
-  const fileSize = 100;
-  const resp = {
-    upload_session_id: 1,
-    start_offset: 0,
-    end_offset: fileSize,
-    video_id: 1000
-  };
+  const resp = require('../fixtures/request/start');
   const formDataStartJson = require('../fixtures/formData/start');
+  const fileSize = resp.end_offset;
 
   request.mockImplementation(() => resp);
 
-  fb.config({
-    adAccountId: "1234",
-    providerToken: "asdf",
-  });
+  fb.config(config);
   fb.formData = new FormData();
 
   const response = await fb.start(fileSize);
@@ -43,26 +35,20 @@ it('upload - start', async () => {
 it('upload - transfer', async () => {
   expect.assertions(2);
 
-  const fileSize = 100;
+  const resp = require('../fixtures/request/transfer');
+  const formDataTransferJson = require('../fixtures/formData/transfer');
+  const fileSize = resp.start_offset;
   const startOffset = 0;
   const endOffset = fileSize;
-  const resp = {
-    start_offset: fileSize,
-    end_offset: fileSize
-  };
   const file = {
     slice: function (start, end) {
       return {size: fileSize, type: ""};
     }
   }
-  const formDataTransferJson = require('../fixtures/formData/transfer');
 
   request.mockImplementation(() => resp);
 
-  fb.config({
-    adAccountId: "1234",
-    providerToken: "asdf",
-  });
+  fb.config(config);
   fb.formData = new FormData();
 
   const responses = await fb.transfer(file, startOffset, endOffset);
@@ -79,17 +65,12 @@ it('upload - finish', async () => {
   const fileSize = 100;
   const startOffset = 0;
   const endOffset = fileSize;
-  const resp = {
-    success: true
-  };
+  const resp = require('../fixtures/request/finish');
   const formDataFinishJson = require('../fixtures/formData/finish');
 
   request.mockImplementation(() => resp);
 
-  fb.config({
-    adAccountId: "1234",
-    providerToken: "asdf",
-  });
+  fb.config(config);
   fb.formData = new FormData();
 
   const responses = await fb.finish(title);
