@@ -19,10 +19,10 @@ async function handleInputChange(e) {
 	const adAccountId = <ad account>;
 	const providerToken = <auth token>;
 	
-	fb.config({
+	fbVideoUploader.config({
 	  adAccountId: adAccountId,
 	  providerToken: providerToken,
-	  debug: 1,
+	  debug: 1
 	})
 	
 	const videoId = await fbVideoUploader.upload(file);
