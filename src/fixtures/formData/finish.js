@@ -1,1 +1,1 @@
-module.exports = {"title": "my new video", "upload_phase": "finish"};
+module.exports = {"access_token": "abasdfa", "title": "my new video", "upload_phase": "finish"};
