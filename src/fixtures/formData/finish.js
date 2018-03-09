@@ -1,0 +1,1 @@
+module.exports = {"title": "my new video", "upload_phase": "finish"};

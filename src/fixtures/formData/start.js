@@ -1,0 +1,1 @@
+module.exports = {"file_size": "100", "upload_phase": "start", "upload_session_id": "1"}

@@ -1,0 +1,1 @@
+module.exports = {"start_offset": "0", "upload_phase": "transfer", "video_file_chunk": "[object Object]"}

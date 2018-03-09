@@ -1,0 +1,15 @@
+version: '3'
+services:
+  fb-video-uploader:
+    image: node:9.3.0
+    container_name: fb_video_upload
+    hostname: fb-video-upload
+    volumes:
+      - $PWD:/var/lib/fb-video-upload:rw
+      - /tmp:/tmp
+    working_dir: /var/lib/fb-video-upload
+    ports:
+      - 3003:4000
+      - 9229:9229
+    command: bash -c "sleep 99999999"
+

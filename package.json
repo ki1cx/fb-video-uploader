@@ -1,0 +1,52 @@
+{
+  "name": "fb-video-uploader",
+  "version": "0.0.7",
+  "description": "fb video uploader",
+  "main": "build/index.js",
+  "keywords": [
+    "fb",
+    "video",
+    "upload",
+    "chunk"
+  ],
+  "homepage": "https://github.com/ki1cx/fb-video-uploader",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ki1cx/fb-video-uploader.git"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/jest",
+    "build-webpack": "webpack",
+    "build-lib": "babel src --presets=env,flow --ignore='**/*.test.js',fixtures --out-dir lib",
+    "example": "./node_modules/.bin/babel-node ./examples/example",
+    "lint": "./node_modules/.bin/eslint ."
+  },
+  "author": {
+    "name": "Ki Chang",
+    "email": "kiwchang@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "Ki Chang",
+      "email": "kiwchang@gmail.com"
+    }
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^8.2.1",
+    "babel-jest": "^22.1.0",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-remove-comments": "^2.0.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "dotenv": "^5.0.0",
+    "eslint": "^4.17.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-flowtype": "^2.42.0",
+    "flow-bin": "^0.64.0",
+    "jest": "^22.1.4",
+    "prettier-eslint": "^8.8.1",
+    "webpack": "^2.6.1"
+  }
+}
