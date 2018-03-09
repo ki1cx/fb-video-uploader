@@ -1,6 +1,6 @@
 {
   "name": "fb-video-uploader",
-  "version": "0.0.2-3",
+  "version": "0.0.2-4",
   "description": "fb video uploader",
   "main": "lib/index.js",
   "peerDependencies": {
