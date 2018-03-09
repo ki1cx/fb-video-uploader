@@ -1,1 +1,1 @@
-module.exports = {"access_token": "abasdfa", "file_size": "100", "upload_phase": "start", "upload_session_id": "1"};
+module.exports = {"access_token": "abasdfa", "file_size": "100", "upload_phase": "start"}

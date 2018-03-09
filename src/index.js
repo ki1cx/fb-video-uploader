@@ -5,6 +5,7 @@ module.exports = {
   adAccountId: null,
   providerToken: null,
   formData: null,
+  uploadSessionId: null,
 
   log(data) {
     this.debug && console.log(data);
@@ -35,7 +36,7 @@ module.exports = {
     this.formData.append('file_size', parseInt(fileSize, 10));
 
     const response = await request("post", this.url, this.formData);
-    this.formData.append('upload_session_id', response.upload_session_id);
+    this.uploadSessionId = response.upload_session_id;
 
     this.log(response);
 
@@ -47,6 +48,7 @@ module.exports = {
     this.formData = new FormData();
     this.formData.append('access_token', this.providerToken);
     this.formData.append('upload_phase', "transfer");
+    this.formData.append('upload_session_id', this.uploadSessionId);
 
     const responses = [];
 
@@ -76,6 +78,7 @@ module.exports = {
     this.formData = new FormData();
     this.formData.append('access_token', this.providerToken);
     this.formData.append('upload_phase', "finish");
+    this.formData.append('upload_session_id', this.uploadSessionId);
     title && this.formData.append('title', title);
 
     const response = await request("post", this.url, this.formData);
