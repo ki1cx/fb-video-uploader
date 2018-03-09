@@ -20,10 +20,6 @@ module.exports = {
   async upload(file, title) {
     this.log(file);
 
-    delete this.formData;
-    this.formData = new FormData();
-    this.formData.set('access_token', this.providerToken);
-
     const startResponse = await this.start(file.size);
     const transferResponses = await this.transfer(file, startResponse.start_offset, startResponse.end_offset);
     const finishResponse = await this.finish(title);
@@ -32,11 +28,14 @@ module.exports = {
   },
 
   async start(fileSize) {
-    this.formData.set('upload_phase', "start");
-    this.formData.set('file_size', parseInt(fileSize, 10));
+    delete this.formData;
+    this.formData = new FormData();
+    this.formData.append('access_token', this.providerToken);
+    this.formData.append('upload_phase', "start");
+    this.formData.append('file_size', parseInt(fileSize, 10));
 
     const response = await request("post", this.url, this.formData);
-    this.formData.set('upload_session_id', response.upload_session_id);
+    this.formData.append('upload_session_id', response.upload_session_id);
 
     this.log(response);
 
@@ -44,21 +43,22 @@ module.exports = {
   },
 
   async transfer(file, start_offset, end_offset) {
-    this.formData.delete('file_size');
+    delete this.formData;
+    this.formData = new FormData();
+    this.formData.append('access_token', this.providerToken);
+    this.formData.append('upload_phase', "transfer");
 
     const responses = [];
 
     start_offset = parseInt(start_offset, 10);
     end_offset = parseInt(end_offset, 10);
 
-    this.formData.set('upload_phase', "transfer");
-
     while(start_offset < end_offset) {
       const blob = file.slice(start_offset, end_offset + 1);
 
       this.log(blob);
-      this.formData.set('start_offset', start_offset);
-      this.formData.set('video_file_chunk', blob);
+      this.formData.append('start_offset', start_offset);
+      this.formData.append('video_file_chunk', blob);
 
       const response = await request("post", this.url, this.formData);
       start_offset = parseInt(response.start_offset, 10);
@@ -72,10 +72,11 @@ module.exports = {
   },
 
   async finish(title) {
-    this.formData.delete('start_offset');
-    this.formData.delete('video_file_chunk');
-    this.formData.set('upload_phase', "finish");
-    title && this.formData.set('title', title);
+    delete this.formData;
+    this.formData = new FormData();
+    this.formData.append('access_token', this.providerToken);
+    this.formData.append('upload_phase', "finish");
+    title && this.formData.append('title', title);
 
     const response = await request("post", this.url, this.formData);
     this.log(response);
