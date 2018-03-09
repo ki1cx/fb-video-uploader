@@ -1,6 +1,6 @@
 import request from './request';
 
-const fbVideoUploader = {
+module.exports = {
   debug: 0,
   adAccountId: null,
   providerToken: null,
@@ -82,6 +82,4 @@ const fbVideoUploader = {
 
     return response;
   }
-};
-
-export default fbVideoUploader;
+}
