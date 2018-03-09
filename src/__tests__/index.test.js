@@ -16,7 +16,7 @@ const convertFormDataToJson = function (formData) {
 it('upload - start', async () => {
   expect.assertions(2);
 
-  const resp = require('../fixtures/request/start');
+  const resp = require('../fixtures/response/start');
   const formDataStartJson = require('../fixtures/formData/start');
   const fileSize = resp.end_offset;
 
@@ -35,7 +35,7 @@ it('upload - start', async () => {
 it('upload - transfer', async () => {
   expect.assertions(2);
 
-  const resp = require('../fixtures/request/transfer');
+  const resp = require('../fixtures/response/transfer');
   const formDataTransferJson = require('../fixtures/formData/transfer');
   const fileSize = resp.start_offset;
   const startOffset = 0;
@@ -65,7 +65,7 @@ it('upload - finish', async () => {
   const fileSize = 100;
   const startOffset = 0;
   const endOffset = fileSize;
-  const resp = require('../fixtures/request/finish');
+  const resp = require('../fixtures/response/finish');
   const formDataFinishJson = require('../fixtures/formData/finish');
 
   request.mockImplementation(() => resp);
